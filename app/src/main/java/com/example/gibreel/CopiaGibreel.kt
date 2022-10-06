@@ -5,30 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import android.widget.Button
 import androidx.fragment.app.Fragment
 
 class CopiaGibreel : Fragment() {
-
-    private  lateinit var  comunicador: Comunicador
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val databinding = DataBindingUtil.inflate<ViewDataBinding>(
-            inflater,
-            R.layout.fragment_copia_gibreel,
-            container,
-            false
-
-        ).apply {
-            lifecycleOwner = viewLifecycleOwner
-            executePendingBindings()
+        val view: View = inflater!!.inflate(R.layout.fragment_copia_gibreel, container, false)
+        val btnPantallaDos: Button = view.findViewById(R.id.btnContinuarPantalla2)
+        btnPantallaDos.setOnClickListener {
+            val fragment = Fragment2()//Navegación a segundo fragment
+            val transaccion = fragmentManager?.beginTransaction()
+            transaccion?.replace(R.id.fragmentContenedor,fragment)?.commit()
         }
-
-        return databinding.root
+        return view
     }
-
 }
