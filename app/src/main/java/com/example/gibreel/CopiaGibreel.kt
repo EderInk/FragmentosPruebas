@@ -17,13 +17,18 @@ class CopiaGibreel : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_copia_gibreel,
-            container, false)
+        val databinding = DataBindingUtil.inflate<ViewDataBinding>(
+            inflater,
+            R.layout.fragment_copia_gibreel,
+            container,
+            false
 
-        comunicador = activity as Comunicador
+        ).apply {
+            lifecycleOwner = viewLifecycleOwner
+            executePendingBindings()
+        }
 
-
-
+        return databinding.root
     }
 
 }
